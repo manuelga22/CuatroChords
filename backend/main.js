@@ -1,8 +1,14 @@
 const express = require('express')
+const https = require("https");
+const fs = require("fs");
 const app = express()
 const port = 3000
 
 const harmonics = require('harmonics')
+
+app.get('/', (req,res)=>{
+    res.send("Hello from express server.")
+})
 
 app.get('/:chord',(req,res)=>{
     try{
@@ -13,6 +19,8 @@ app.get('/:chord',(req,res)=>{
     }
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+https.createServer({key:fs.readFileSync('key.pem'), cert: fs.readFileSync("cert.pem")}, app).listen(port, ()=>{
+    console.log('server is runing at port 3000')
+});
+
+
