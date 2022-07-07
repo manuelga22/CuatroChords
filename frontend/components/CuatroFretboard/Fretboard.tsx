@@ -6,6 +6,7 @@ import FretboardSharps from './cuatroNotes';
 const FretboardComponent = (props:any)=> {
     const NUMBER_OF_STRINGS = 4;
     const NUMBER_OF_NOTES_PER_FRET = 4;
+    const [notesToHighlight, setNotesToHighlight] = React.useState(Array<string>)
     
 
     function strings(){
@@ -15,10 +16,14 @@ const FretboardComponent = (props:any)=> {
         }
         return strings
     }
-    function notes(fretNotes:Array<String>){
+    function notes(fretNotes:Array<string>){
         let notesRows = []
         for(let i = 0; i < NUMBER_OF_NOTES_PER_FRET; i++){
-            notesRows.push(<View style={styles.note}><Text>{fretNotes[i]}</Text></View>)
+            if(notesToHighlight.includes(fretNotes[i])){
+                notesRows.push(<View style={styles.noteHighlighted}><Text>{fretNotes[i]}</Text></View>)
+            }else{
+                notesRows.push(<View style={styles.note}><Text>{fretNotes[i]}</Text></View>)
+            }     
         }
         return <View style={styles.notesWrapper}>{notesRows}</View>
     }
@@ -33,10 +38,10 @@ const FretboardComponent = (props:any)=> {
     })
 
     React.useEffect(()=>{
-        if(props.showChords != null){
-
+        if(props.notes.length > 1){
+            setNotesToHighlight(props.notes)
         }
-    },[])
+    },[props.notes])
 
     return(
             <ScrollView contentContainerStyle={styles.container}>
@@ -97,6 +102,18 @@ const styles = StyleSheet.create({
         width: 35,
         height:35,
         backgroundColor:'orange',
+        marginRight:35,
+        right:10,
+        bottom:20,
+        dislay:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    noteHighlighted:{
+        borderRadius:100,
+        width: 35,
+        height:35,
+        backgroundColor:'lightblue',
         marginRight:35,
         right:10,
         bottom:20,

@@ -3,19 +3,22 @@ import { StyleSheet, Text, View, TextInput, SafeAreaView } from 'react-native';
 
 import FretboardComponent from './CuatroFretboard/Fretboard';
 
-const getChordNotes = (chord:string)=>{
-    return fetch(`https://locahost:3000/${chord}`)
-    .then((response)=>response.json())
-    .then((json)=>{
-        return json
-    })
-    .catch((error)=>{
-        console.log(error)
-    })
-}
-
 const HomeScreen = ()=> {
     const [chord, onChangeChord] = React.useState("")
+    const [chordNotes,setChordNotes] = React.useState(Array<String>)
+
+
+    const getChordNotes = (chord:string)=>{
+        // return fetch(`https://locahost:3000/${chord}`)
+        // .then((response)=>response.json())
+        // .then((json)=>{
+            setChordNotes(['C','E','G'])
+        //   return json
+        // })
+        // .catch((error)=>{
+        //     console.log(error)
+        // })
+    }
 
     return(
     <View>
@@ -31,7 +34,7 @@ const HomeScreen = ()=> {
                 />
             </SafeAreaView>
         </View>
-        <FretboardComponent notes={['C','E','G']}></FretboardComponent>
+        <FretboardComponent notes={chordNotes}></FretboardComponent>
 
     </View>
     );
