@@ -6,8 +6,9 @@ import FretboardSharps from './cuatroNotes';
 const FretboardComponent = (props:any)=> {
     const NUMBER_OF_STRINGS = 4;
     const NUMBER_OF_NOTES_PER_FRET = 4;
+    
 
-    function strings(notes:Array<String>){
+    function strings(){
         let strings = []
         for(let i = 0; i < NUMBER_OF_STRINGS - 1; i++){
             strings.push(<View style={styles.string}></View>)
@@ -25,23 +26,26 @@ const FretboardComponent = (props:any)=> {
     const frets = FretboardSharps.map((fret)=>{
         return (
             <View style={styles.fret}>
-                { strings(fret) }
+                { strings() }
                 { notes(fret)}
             </View>
         );
     })
 
+    React.useEffect(()=>{
+        if(props.showChords != null){
+
+        }
+    },[])
+
     return(
             <ScrollView contentContainerStyle={styles.container}>
-    
                 <View style={styles.fretboard}>
                     <View style={styles.cuatroFrets}>
                         {frets}
                     </View>
-                </View>
-               
+                </View>       
             </ScrollView>
-
     );
 }
 
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFFFFF',
         borderWidth:3,
         borderBottomColor: 'grey',
-        flex:1,
+        dislay:'flex',
         flexDirection:'row',
         minHeight:70
     },
@@ -86,17 +90,19 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         flexWrap:'nowrap',
-        minWidth:'150%',
+        minWidth:'100%',
     },
     note:{
         borderRadius:100,
         width: 35,
         height:35,
         backgroundColor:'orange',
-        margin:'10%',
-        //bottom: 55,
-        //bottom:'0px',
-        //right:'0%',
+        marginRight:35,
+        right:10,
+        bottom:20,
+        dislay:'flex',
+        justifyContent:'center',
+        alignItems:'center',
     }
 });
   
