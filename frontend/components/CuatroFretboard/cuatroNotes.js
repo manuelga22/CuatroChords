@@ -12,6 +12,9 @@ const FretboardSharps = [
                    ['G', 'C', 'E', 'A'],
                    ['G#', 'C#','F','A#'],
                    ['A','D','F#','B'],
+                   ['A#','D#','G','C'],
+                   ['B','E','G#','C#'],
+                   ['C','F','A','D'],
                   ]
 
 export default FretboardSharps

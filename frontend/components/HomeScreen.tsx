@@ -1,23 +1,21 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { StyleSheet, Text, View, TextInput, SafeAreaView } from 'react-native';
 
 import FretboardComponent from './CuatroFretboard/Fretboard';
 
-const HomeScreen = ()=> {
+const HomeScreen = (props:any)=> {
     const [chord, onChangeChord] = React.useState("")
-    const [chordNotes,setChordNotes] = React.useState(Array<String>)
+    const [chordName, setChordName] = React.useState("")
 
+    const getChordName = ()=>{
 
-    const getChordNotes = (chord:string)=>{
-        // return fetch(`https://locahost:3000/${chord}`)
-        // .then((response)=>response.json())
-        // .then((json)=>{
-            setChordNotes(['C','E','G'])
-        //   return json
-        // })
-        // .catch((error)=>{
-        //     console.log(error)
-        // })
+    }
+
+    const goToChordViewScreen = (chord:string)=>{
+       onChangeChord(chord)
+       props.navigation.navigate('ChordView', {chordName: chordName, notes: ['C', 'E', 'G']})
     }
 
     return(
@@ -30,12 +28,12 @@ const HomeScreen = ()=> {
                   value={chord}
                   placeholder="Try C M (C Major) or C m (C minor)"
                   returnKeyType='search'
-                  onSubmitEditing={()=>{getChordNotes(chord)}}
+                  onSubmitEditing={()=>goToChordViewScreen(chord)}
                 />
             </SafeAreaView>
         </View>
-        <FretboardComponent notes={chordNotes}></FretboardComponent>
 
+        <FretboardComponent chords={[]}></FretboardComponent>
     </View>
     );
 }
@@ -55,3 +53,18 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
+
+
+
+
+// const getChordNotes = (chord:string)=>{
+//     // return fetch(`https://locahost:3000/${chord}`)
+//     // .then((response)=>response.json())
+//     // .then((json)=>{
+//         setChordNotes(['C','E','G'])
+//     //   return json
+//     // })
+//     // .catch((error)=>{
+//     //     console.log(error)
+//     // })
+// }

@@ -8,7 +8,6 @@ const FretboardComponent = (props:any)=> {
     const NUMBER_OF_NOTES_PER_FRET = 4;
     const [notesToHighlight, setNotesToHighlight] = React.useState(Array<string>)
     
-
     function strings(){
         let strings = []
         for(let i = 0; i < NUMBER_OF_STRINGS - 1; i++){
@@ -32,13 +31,13 @@ const FretboardComponent = (props:any)=> {
         return (
             <View style={styles.fret}>
                 { strings() }
-                { notes(fret)}
+                { notes(fret) }
             </View>
         );
     })
 
     React.useEffect(()=>{
-        if(props.notes.length > 1){
+        if(props.notes != undefined && props.notes.length > 1){
             setNotesToHighlight(props.notes)
         }
     },[props.notes])
