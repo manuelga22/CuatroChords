@@ -9,12 +9,9 @@ const HomeScreen = (props:any)=> {
     const [chord, onChangeChord] = React.useState("")
     const [chordName, setChordName] = React.useState("")
 
-    const getChordName = ()=>{
-
-    }
-
-    const goToChordViewScreen = (chord:string)=>{
+    const goToChordViewScreen = ()=>{
        onChangeChord(chord)
+       setChordName("C major")
        props.navigation.navigate('ChordView', {chordName: chordName, notes: ['C', 'E', 'G']})
     }
 
@@ -28,7 +25,7 @@ const HomeScreen = (props:any)=> {
                   value={chord}
                   placeholder="Try C M (C Major) or C m (C minor)"
                   returnKeyType='search'
-                  onSubmitEditing={()=>goToChordViewScreen(chord)}
+                  onSubmitEditing={()=>goToChordViewScreen()}
                 />
             </SafeAreaView>
         </View>

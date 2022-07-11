@@ -10,16 +10,16 @@ const ChordViewComponent = (props:any)=> {
 
     React.useLayoutEffect(()=>{
         props.navigation.setOptions({
-            headerTitle: 'C major',
+            headerTitle: params.chordName,
             headerLeft: () => (
               <Button title="<Back" onPress={() => props.navigation.navigate('Fretboard')}  />
             ),
         });
     }, [props.navigation])
 
-    React.useEffect(()=>{
-        if(params.chords != undefined && params.chords.length > 0){
-            setChordNotes(params.chords)
+    React.useEffect(()=>{ 
+        if(params.notes != undefined && params.notes.length > 0){
+            setChordNotes(params.notes)
         }
     },[chordNotes])
 

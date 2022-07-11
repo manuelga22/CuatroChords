@@ -31,11 +31,32 @@ function checkInput(input){
     return isInputValid
 }
 
+function getChordName(input){
+    let letter = input[0]
+    let chordType = input.substring(2)
+    let chordName = ''
+    chordName += letter + ' '
+
+    if(chordType[0] === 'M'){
+        chordName += 'Major ' + chordType.substring(1)
+    }else if(chordType[0] === 'm'){
+        chordName += 'Minor' + chordType.substring(1)
+    }else{
+        chordName += chordType
+    }
+
+    return chordName
+}
+
 app.get('/:chord',(req,res)=>{
     try{
         const chord = req.params.chord
-        if(checkInput()){
-            res.send(harmonics.chord(chord))
+        const isInputFormatted = checkInput(chord)
+        console.log(chord, isInputFormatted)
+        if(isInputFormatted){
+            const name = getChordName(chord)
+            console.log("hereee",name)
+            res.json({chordName:name, notes:harmonics.chord(chord)})
         }else{
             res.send("Incorrent Input")
         }
@@ -44,8 +65,11 @@ app.get('/:chord',(req,res)=>{
     }
 })
 
-https.createServer({key:fs.readFileSync('key.pem'), cert: fs.readFileSync("cert.pem")}, app).listen(port, ()=>{
-    console.log('server is runing at port 3000')
-});
+// https.createServer({key:fs.readFileSync('key.pem'), cert: fs.readFileSync("cert.pem")}, app).listen(port, ()=>{
+//     console.log('server is runing at port 3000')
+// });
 
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
 

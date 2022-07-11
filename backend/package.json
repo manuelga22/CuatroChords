@@ -4,6 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
+    "start": "nodemon main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -11,6 +12,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "fs": "0.0.1-security",
-    "harmonics": "^1.1.0"
+    "harmonics": "^1.1.0",
+    "nodemon": "^2.0.19"
   }
 }
