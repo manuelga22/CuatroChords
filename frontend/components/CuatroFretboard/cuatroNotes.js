@@ -1,4 +1,4 @@
-const FretboardSharps = [
+export const FretboardSharps = [
                    ['A','D','F#','B'],
                    ['A#', 'D#', 'G', 'C'],
                    ['B', 'E', 'G#', 'C#'],
@@ -17,4 +17,21 @@ const FretboardSharps = [
                    ['C','F','A','D'],
                   ]
 
-export default FretboardSharps
+export const FretboardFlats  = [
+                   ['A','D','Gb','B'],
+                   ['Bb', 'Db', 'G', 'C'],
+                   ['B', 'E', 'Ab', 'Db'],
+                   ['C', 'F', 'A', 'D'],
+                   ['Db','Gb','Bb','Eb'],
+                   ['D', 'G', 'B', 'E'],
+                   ['Eb', 'Ab', 'C', 'F'],
+                   ['E', 'A', 'Db', 'Gb'],
+                   ['F','Bb','D','G'],
+                   ['Gb', 'B', 'Eb', 'Ab'],
+                   ['G', 'C', 'E', 'A'],
+                   ['Ab', 'C#','F','Bb'],
+                   ['A','D','Gb','B'],
+                   ['Bb','Eb','G','C'],
+                   ['B','E','Ab','Db'],
+                   ['C','F','A','D'],
+                  ]

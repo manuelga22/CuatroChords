@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text,ScrollView, View } from 'react-native';
 
-import FretboardSharps from './cuatroNotes';
+import { FretboardSharps, FretboardFlats } from './cuatroNotes';
 
 const FretboardComponent = (props:any)=> {
     const NUMBER_OF_STRINGS = 4;

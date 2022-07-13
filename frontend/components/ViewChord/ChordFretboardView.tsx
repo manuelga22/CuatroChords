@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import FretboardComponent from '../CuatroFretboard/Fretboard';
 
 
