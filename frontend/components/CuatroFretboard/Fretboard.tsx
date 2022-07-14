@@ -3,10 +3,18 @@ import { StyleSheet, Text,ScrollView, View } from 'react-native';
 
 import { FretboardSharps, FretboardFlats } from './cuatroNotes';
 
+import AppContext from '../AppContext';
+
 const FretboardComponent = (props:any)=> {
     const NUMBER_OF_STRINGS = 4;
     const NUMBER_OF_NOTES_PER_FRET = 4;
+
+    const [frets, setFrets] = React.useState(FretboardSharps)
     const [notesToHighlight, setNotesToHighlight] = React.useState(Array<string>)
+
+    const myContext = React.useContext(AppContext)
+
+    let FretboardNotes = FretboardSharps;
     
     function strings(){
         let strings = []
@@ -15,6 +23,7 @@ const FretboardComponent = (props:any)=> {
         }
         return strings
     }
+
     function notes(fretNotes:Array<string>){
         let notesRows = []
         for(let i = 0; i < NUMBER_OF_NOTES_PER_FRET; i++){
@@ -27,7 +36,7 @@ const FretboardComponent = (props:any)=> {
         return <View style={styles.notesWrapper}>{notesRows}</View>
     }
 
-    const frets = FretboardSharps.map((fret)=>{
+    const PrintFrets = frets.map((fret)=>{
         return (
             <View style={styles.fret}>
                 { strings() }
@@ -37,16 +46,20 @@ const FretboardComponent = (props:any)=> {
     })
 
     React.useEffect(()=>{
+        if(myContext.checkedFlatsMode === true){
+            setFrets(FretboardFlats)
+        }else setFrets(FretboardSharps)
+
         if(props.notes != undefined && props.notes.length > 1){
             setNotesToHighlight(props.notes)
         }
-    },[props.notes])
+    },[props.notes, myContext.checkedFlatsMode])
 
     return(
             <ScrollView contentContainerStyle={styles.container}>
                 <View style={styles.fretboard}>
                     <View style={styles.cuatroFrets}>
-                        {frets}
+                        {PrintFrets}
                     </View>
                 </View>       
             </ScrollView>

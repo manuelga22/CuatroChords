@@ -19,7 +19,7 @@ export const FretboardSharps = [
 
 export const FretboardFlats  = [
                    ['A','D','Gb','B'],
-                   ['Bb', 'Db', 'G', 'C'],
+                   ['Bb', 'Eb', 'G', 'C'],
                    ['B', 'E', 'Ab', 'Db'],
                    ['C', 'F', 'A', 'D'],
                    ['Db','Gb','Bb','Eb'],

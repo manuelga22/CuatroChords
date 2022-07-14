@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+
+import AppContext from './AppContext'
+
 import { Switch } from "@rneui/themed";
 
-const SettingsScreen = () => {
 
+const SettingsScreen = () => {
     return (
         <View style= {styles.container}>
 
-        
             <View style={styles.settingsWrapper}>
                 <View style={styles.settingsRow}><Text>Flats Mode</Text><SwitchComponent name='FlatsMode'></SwitchComponent></View>
             </View>
@@ -20,30 +22,14 @@ const SettingsScreen = () => {
 }
 
 
-const SwitchComponent = (props: { name: string; }) => {
-    const [checkedFlatsMode, setCheckedFlatsMode] = React.useState(false);
-    const [isChecked, setCheck] = React.useState(false);
-
-    const toggleSwitch = (value:boolean) => {
-                //KEEP ADDING TO THIS IF STATEMENT AS MORE SETINGS ARE BEING ADDED
-        if(props.name = 'flatsMode'){
-            setCheckedFlatsMode(value);
-            setCheck(value);
-        }
-    };
-
-    React.useEffect(()=>{
-        //KEEP ADDING TO THIS IF STATEMENT AS MORE SETINGS ARE BEING ADDED
-        if(props.name === 'FlatsMode'){
-            setCheck(checkedFlatsMode)
-        }
-    },[])
+const SwitchComponent = (props: { name: string; }) => {   
+    const myContext = React.useContext(AppContext);
 
     return (
         <View style={styles.view}>
             <Switch
-                value={isChecked}
-                onValueChange={(value)=>{toggleSwitch(value)}}
+                value={myContext.checkedFlatsMode}
+                onValueChange={myContext.toggleFlatsMode}
             />
         </View>
     );
