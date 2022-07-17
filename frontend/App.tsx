@@ -35,7 +35,7 @@ function SettingsScreenStack(){
 export default function App() {
 
   const [checkedFlatsMode, setCheckedFlatsMode] = React.useState(false);
-  const toggleFlatsMode = () => {
+  const toggleFlatsMode = ():void => {
     setCheckedFlatsMode(!checkedFlatsMode)
   };
 

@@ -24,12 +24,25 @@ const SettingsScreen = () => {
 
 const SwitchComponent = (props: { name: string; }) => {   
     const myContext = React.useContext(AppContext);
+    const [isChecked, setCheck] = React.useState(false)
+
+    React.useEffect(()=>{
+        if(props.name = "FlatsMode"){
+            setCheck(myContext.checkedFlatsMode)
+        }
+    },[myContext.checkedFlatsMode])
 
     return (
         <View style={styles.view}>
             <Switch
-                value={myContext.checkedFlatsMode}
-                onValueChange={myContext.toggleFlatsMode}
+                value={isChecked}
+                onValueChange={
+                    ()=>{
+                        if(props.name === 'FlatsMode'){
+                            myContext.toggleFlatsMode()
+                        }
+                    }
+                }
             />
         </View>
     );
